@@ -13,13 +13,13 @@
         <span v-if="!this.$store.state.collapsed">
         
 
-          <router-link   to="/" class=" link  d-flex justify-content-center fw-bold"   aria-current="page" icon="fas fa-home"> 
+          <router-link   to="/" class=" link  d-flex justify-content-center fw-bold" @click="this.$store.state.collapsed = true"   aria-current="page" icon="fas fa-home"> 
           Accueil</router-link>  
        
          
-        <router-link  to="/formulaire" class=" link  d-flex justify-content-center fw-bold"  aria-current="page"  icon="fas fa-columns"> inscription</router-link> 
-        <router-link  to="/contacter" class=" link d-flex justify-content-center fw-bold" aria-current="page" icon="fas fa-chart-bar"> contacter</router-link> 
-        <router-link  to="/connecter" class="  link d-flex justify-content-center fw-bold" aria-current="page" icon="fas fa-image"> se connecter</router-link>
+        <router-link  to="/formulaire" class=" link  d-flex justify-content-center fw-bold"  aria-current="page" @click="this.$store.state.collapsed = true"  icon="fas fa-columns"> inscription</router-link> 
+        <router-link  to="/contacter" class=" link d-flex justify-content-center fw-bold" aria-current="page" @click="this.$store.state.collapsed = true" icon="fas fa-chart-bar"> contacter</router-link> 
+        <router-link  to="/connecter" class="  link d-flex justify-content-center fw-bold" aria-current="page" @click="this.$store.state.collapsed = true" icon="fas fa-image"> se connecter</router-link>
         </span>
         <span v-else>
           <router-link   to="/" class=" link d-flex justify-content-center "  aria-current="page" icon="fas fa-home"> <fa :icon="['fas','home']"/>
@@ -79,8 +79,10 @@ export default {
 
 <style>
 :root {
-  --sidebar-bg-color: #2f855a;
-  --sidebar-item-hover: #38a169;
+   --sidebar-bg-color: #015BA0;
+  /* --sidebar-bg-color: #2f855a; */
+  --sidebar-item-hover: #023E8A;
+  /* --sidebar-item-hover: #38a169; */
   --sidebar-item-active: #276749;
 }
 </style>
@@ -149,6 +151,16 @@ export default {
 .link.active {
   background-color: var(--sidebar-item-active) ;
 }
+/* @media only screen and (max-width: 600px) {
+ .sidebar {
+   z-index: 1;
+   background-color: #42b983;
+   
+    
+   
+  }
+} */
+
 
 
 </style>

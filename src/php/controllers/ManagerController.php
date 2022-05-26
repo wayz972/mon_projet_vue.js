@@ -56,6 +56,7 @@ class ManagerController
             echo json_encode($_SESSION["message"]);
           } else {
             echo json_encode($userpro);
+            
           }
         } else {
           echo json_encode($user);

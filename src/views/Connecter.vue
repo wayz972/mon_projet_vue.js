@@ -1,11 +1,11 @@
  <template>
   <transition name="error">
     <div
-      v-if="show"
+      v-if="this.$store.state.verifaction.show"
       :class="[this.class ? 'alert alert-success' : 'alert alert-danger']"
       role="alert"
     >
-      {{ error }}
+      {{ this.$store.state.verifaction.error }}
     </div>
   </transition>
   <div id="container-connect" class="  mt-3 " style="height: 25em">
@@ -60,10 +60,10 @@
 <fa :icon="['fab','github']"/>
 <fa :icon="['fab','google']"/> -->
   <!-- {{this.$store.state.User}} -->
- {{ this.$store.state.quentin}}
+  <!-- {{this.$store.state.User}} -->
 </template>
 <script>
-import axios from "axios";
+
 import monFooter from "../components/Footer.vue";
 export default {
   name:'meConnecter',
@@ -91,32 +91,33 @@ export default {
       let data = new FormData();
       data.append("email", this.emailuser);
       data.append("password", this.passworduser);
-      axios
-        .post("http://localhost/mon-projet/src/php/index.php?url=login", data)
-        .then((response) => {
-          response.data, console.log(response.data);
+         this.$store.dispatch("checked",data);
+      // axios
+      //   .post("http://localhost/mon-projet/src/php/index.php?url=login", data)
+      //   .then((response) => {
+      //     response.data, console.log(response.data);
 
-          if (response.data.error !== undefined || response.data == undefined) {
-            this.show = true;
-            console.log("no-pass");
-            this.error = response.data.error;
-            setTimeout(() => {
-              this.show = false;
-            }, 3000);
-          } else {
-            sessionStorage.setItem("email", response.data.email);
-            sessionStorage.setItem("name", response.data.name_user);
-            sessionStorage.setItem("fname", response.data.first_name_user);
-            sessionStorage.setItem("phone", response.data.phone_user);
-            sessionStorage.setItem("id", response.data.id_user);
-            sessionStorage.setItem("status", response.data.verify);
-            sessionStorage.setItem("img", response.data.img);
-            sessionStorage.setItem("nav", response.data.nav);
-            this.change();
-            // this.$router.push("/profilpro");
+      //     if (response.data.error !== undefined || response.data == undefined) {
+      //       this.show = true;
+      //       console.log("no-pass");
+      //       this.error = response.data.error;
+      //       setTimeout(() => {
+      //         this.show = false;
+      //       }, 3000);
+      //     } else {
+      //       sessionStorage.setItem("email", response.data.email);
+      //       sessionStorage.setItem("name", response.data.name_user);
+      //       sessionStorage.setItem("fname", response.data.first_name_user);
+      //       sessionStorage.setItem("phone", response.data.phone_user);
+      //       sessionStorage.setItem("id", response.data.id_user);
+      //       sessionStorage.setItem("status", response.data.verify);
+      //       sessionStorage.setItem("img", response.data.img);
+      //       sessionStorage.setItem("nav", response.data.nav);
+      //       this.change();
+      //       // this.$router.push("/profilpro");
             
-          }
-        });
+      //     }
+      //   });
     },
   },
 };
@@ -159,5 +160,9 @@ export default {
 }
 .error-leave-active {
   transition: all 2s ease;
+}
+
+.btn-primary{
+  background-color:#015BA0 !important;
 }
 </style>

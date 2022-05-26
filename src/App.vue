@@ -1,16 +1,16 @@
 <template>
 <div>
   <!-- <maNavabar/> -->
-  <div v-if="this.$store.state.User.id ==null">
+  <div  v-if="this.$store.state.User.id == ''">
   <mysidebar/>
 
   </div>
   <div v-else>
  <sidebarconnect/>
   </div>
-  <div :style="{ 'margin-left':  `${this.$store.state.collapsed ? this.$store.state.SIDEBAR_WIDTH_COLLAPSED : this.$store.state.SIDEBAR_WIDTH}px` }">
+   <div class="Mysidebar"  :style="{ 'margin-left':  `${this.$store.state.collapsed ? this.$store.state.SIDEBAR_WIDTH_COLLAPSED : this.$store.state.SIDEBAR_WIDTH}px` }">
     <router-view/>
-    </div>
+    </div>  
 </div>
 
  
@@ -45,6 +45,7 @@ methods:{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+ 
    
 }
 #nav {
@@ -59,4 +60,16 @@ methods:{
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/* 
+ @media only screen and (max-width: 600px) {
+ .Mysidebar {
+   
+   background-color: #42b983;
+   
+    
+   
+  } */
+/* }  */
+
 </style>

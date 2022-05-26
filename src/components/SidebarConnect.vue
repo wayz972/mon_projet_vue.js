@@ -15,7 +15,7 @@
 
            
        
-        <router-link  to="/profilpro" class=" link fw-bold d-flex justify-content-center" aria-current="page"> mon profil   </router-link>  
+        <router-link  to="/profilpro" class=" link fw-bold d-flex justify-content-center" @click="this.$store.state.collapsed = true" aria-current="page"> mon profil   </router-link>  
         <router-link to="" class="link   fw-bold d-flex justify-content-center" @click="disconnect()">Deconnecter</router-link>  
         </span>
         <span v-else>

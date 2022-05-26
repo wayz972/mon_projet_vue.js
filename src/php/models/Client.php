@@ -206,7 +206,8 @@ class Client extends Model
     $stmt = $this->connect()->prepare($sql);
     $stmt->bindParam(':email_client', $this->email);
     $stmt->execute();
-    return $stmt;
+    $req=$stmt->fetch();
+    return $req;
   }
 
 

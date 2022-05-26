@@ -4,8 +4,6 @@
 class ControlClient
 {
 
-
-
   public function createUser()
   {
 
@@ -31,6 +29,7 @@ class ControlClient
           try {
             // je crée un usuer sans image
             $newuser = new Client();
+            
 
             $newuser->setImgclient("imagedefault.png");
 

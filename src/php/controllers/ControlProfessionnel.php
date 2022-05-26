@@ -129,6 +129,7 @@ class ControlProfessionnel{
         if (empty($_FILES['image'])) {
   
           try {
+           
   
             $updateuserPro = new Professionnel();
   
@@ -137,8 +138,8 @@ class ControlProfessionnel{
             $updateuserPro->setTelephone_professionnel(htmlspecialchars($_POST["phone"]));
             $updateuserPro->setEmail_professionnel(htmlspecialchars($_POST["email"]));
             $updateuserPro->setId_professionnel(htmlspecialchars($_POST["id"]));
-            $user = $updateuserPro->updateProwithoutPicture();
-            echo json_encode($user);
+             $user = $updateuserPro->updateProwithoutPicture();
+             echo json_encode($user);
           } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
           }
@@ -147,7 +148,7 @@ class ControlProfessionnel{
           try {
   
   
-  
+           
             // ENREGISTREMENT DE UTILISATEUR AVEC IMAGE
             $image = $_FILES['image']['tmp_name'];
             $name = $_FILES['image']['name'];
@@ -169,7 +170,8 @@ class ControlProfessionnel{
               
               
               //déplacer le fichier importé
-              $fichier = move_uploaded_file($image, "../image/$fileName");
+               move_uploaded_file($image,"../image/$fileName");
+               
               $updateuserPro = new Professionnel();
               $updateuserPro->setImg_professionnel(htmlspecialchars($fileName));
               $updateuserPro->setNom_professionnel(htmlspecialchars($_POST["name"]));
@@ -182,7 +184,7 @@ class ControlProfessionnel{
               $chemin="../image/".$_POST['img'];
               unlink($chemin);  //permet d'effacer l'ancienne image
               
-              echo json_encode($user);
+               echo json_encode($user);
             }else{
               echo json_encode($message[3]);
             }

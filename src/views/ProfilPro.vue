@@ -36,11 +36,12 @@
             <div class=" col-8  card">
               <img
                 class="rounded"
-                :src="require('../image/' + this.img)"
+                :src="require('../image/' + this.$store.state.User.img)"
                 alt=""
                 srcset=""
               />
               <br />
+              
               <input
                 type="file"
                 class="form-control"
@@ -73,7 +74,7 @@
                 type="text"
                 id="account-fn"
                 required=""
-                v-model="name"
+                v-model="this.$store.state.User.name"
               />
             </div>
           </div>
@@ -85,19 +86,20 @@
                 type="text"
                 id="account-ln"
                 required=""
-                v-model="fname"
+                v-model="this.$store.state.User.fname"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
+              
               <label for="account-email">E-mail </label>
               <input
                 class="form-control"
                 type="email"
                 id="account-email"
                 disabled=""
-                v-model="email"
+                v-model="this.$store.state.User.email"
               />
             </div>
           </div>
@@ -109,14 +111,15 @@
                 type="text"
                 id="account-phone"
                 required=""
-                v-model="phone"
+                v-model="this.$store.state.User.phone"
               />
             </div>
           </div>
+          
           <div class="col-12">
             <hr class="mt-2 mb-3" />
 
-            <div v-if="this.change">
+            <div v-if="this.$store.state.User.change">
               <div class="d-flex justify-content-between">
                 <button
                   class="btn btn-style-1 btn-primary"
@@ -221,12 +224,7 @@ export default {
   data() {
     return {
   
-       name: this.$store.state.User.name,
-       fname: this.$store.state.User.fname,
-      email: this.$store.state.User.email,
-      phone: this.$store.state.User.phone, 
-      img: this.$store.state.User.img,
-      change:this.$store.state.User.change,
+    
       newimg: "",
       pourcentage:0,
       txt: "",
@@ -240,6 +238,7 @@ export default {
   created() {
     let data = new FormData();
     data.append("id", this.$store.state.User.id);
+    
     axios
       .post(
         "http://localhost/mon-projet/src/php/index.php?url=displaysalleUser",
@@ -253,7 +252,11 @@ export default {
 
   methods: {
 
-    //supprimer la salle 
+    
+         /**
+         *  supprimer la salle du professionnel
+         * @param  {string}array 
+         */
     deletesalle(item) {
       var change = this.txt.find((cost) => cost.id_salle === item.id_salle);
       console.log(change.id_salle);
@@ -262,15 +265,14 @@ export default {
       let data = new FormData();
       data.append("id_salle", change.id_salle);
       data.append("id", this.$store.state.User.id);
-      axios
-        .post("http://localhost/mon-projet/src/php/index.php?url=delete", data)
-        .then((response) => {
-          response.data;
-          console.log(response.data);
-          window.location.reload(); 
-        });
+      this.$store.dispatch("deletesalle",data);
+      
     },
-// recuperer le nom de l'image
+
+/**elle permet de recuperer le nom de limage
+ * 
+ * @param {array} event 
+ */
     previewFiles(event) {
       this.newimg = event.target.files[0];
       console.log(this.newimg);
@@ -281,36 +283,22 @@ export default {
       this.$emit("changetoogle");
     },
 
-    // mise a jour du pro 
+    
+    /**cette fonction met a jour le profil pro
+     * @param array
+     */ 
     addsubmit() {
       let data = new FormData();
       
-      data.append("phone", this.phone);
-      data.append("name", this.name);
-      data.append("fname", this.fname);
+      data.append("phone", this.$store.state.User.phone);
+      data.append("name", this.$store.state.User.name);
+      data.append("fname", this.$store.state.User.fname);
       data.append("image", this.newimg);
-      data.append("email", this.email);
+      data.append("email", this.$store.state.User.email);
       data.append("id", this.$store.state.User.id);
       data.append("img",this.$store.state.User.img); // je transmet l'ancienne image pour efffacer
-      axios
-        .post("http://localhost/mon-projet/src/php/index.php?url=update",data)
-        .then((response) => {
-          response.data
-            console.log(response.data)
-         
-           if (response.data.errorImage ==undefined) {
-                sessionStorage.setItem("name", response.data.nom_professionnel);
-          sessionStorage.setItem("email", response.data.email_professionnel);
-          sessionStorage.setItem("fname", response.data.prenom_professionnel);
-          sessionStorage.setItem("img", response.data.img_professionnel);
-          sessionStorage.setItem("phone",response.data.telephone_professionnel );
-                  console
-           } else {
-          console.log(response.data.errorImage)
-             
-           }
-      
-        });
+      this.$store.dispatch("addsubmit",data);
+ 
       this.change = true;
       this.check();
         this.toasts(); // 
@@ -332,38 +320,42 @@ export default {
     },
 
 
- //mise a jour du client 
+ //mise a jour du client
+ /**
+  * @param
+  */ 
     enregister() {
       let data = new FormData();
-      data.append("phone", this.phone);
-      data.append("name", this.name);
-      data.append("fname", this.fname);
+      data.append("phone", this.$store.state.User.phone);
+      data.append("name", this.$store.state.User.name);
+      data.append("fname", this.$store.state.User.fname);
       data.append("image", this.newimg);
-      data.append("email", this.email);
+      data.append("email", this.$store.state.User.email);
       data.append("id", this.$store.state.User.id);
-      axios
-        .post(
-          "http://localhost/mon-projet/src/php/index.php?url=enregister",
-          data
-        )
-        .then((response) => {
-          response.data;
-          console.log(response.data);
+      this.$store.dispatch("enregister",data);
+      // axios
+      //   .post(
+      //     "http://localhost/mon-projet/src/php/index.php?url=enregister",
+      //     data
+      //   )
+      //   .then((response) => {
+      //     response.data;
+      //     console.log(response.data);
 
-          if(response.data.errorImage ==undefined){
+      //     if(response.data.errorImage ==undefined){
 
-              sessionStorage.setItem("name", response.data.nom_client);
-          sessionStorage.setItem("email", response.data.email_client);
-          sessionStorage.setItem("fname", response.data.prenom_client);
-          sessionStorage.setItem("img", response.data.img_client);
-          sessionStorage.setItem("phone",response.data.tel_client);
-          }else{
-             console.log(response.data.errorImage)
-          }
+      //         sessionStorage.setItem("name", response.data.nom_client);
+      //     sessionStorage.setItem("email", response.data.email_client);
+      //     sessionStorage.setItem("fname", response.data.prenom_client);
+      //     sessionStorage.setItem("img", response.data.img_client);
+      //     sessionStorage.setItem("phone",response.data.tel_client);
+      //     }else{
+      //        console.log(response.data.errorImage)
+      //     }
           
-        // 
+      //   // 
            
-        });
+      //   });
 
         this.check();
         this.toasts();
@@ -400,36 +392,5 @@ toasts(){
 </script>
 
 <style scoped>
-/* 
-.card {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    margin-bottom: 30px;
-    border-radius: 6px;
-    color: rgba(0, 0, 0, 0.87);
-    background: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
 
-.card .card-image {
-    height: 60%;
-    position: relative;
-    overflow: hidden;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: -30px;
-    border-radius: 6px;
-    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-}
-
-.card .card-image img {
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-    pointer-events: none;
-} */
-
-
-/*  */
 </style>

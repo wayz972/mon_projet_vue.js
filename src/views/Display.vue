@@ -67,16 +67,16 @@ export default {
                 var  change=this.infoSalle.find(cost=>cost.id_salle === item.id_salle )
             console.log(change.id_salle)
             console.log(this.time)
-            console.log(sessionStorage.getItem("id"))
+            
 
 
 
    let data = new FormData();
     data.append("id",change.id_salle);
     data.append("slot",this.time);
-    data.append("id_user",sessionStorage.getItem("id"))
+    data.append("id_user", this.$store.state.User.id)
         axios.post(
-          "http://localhost/mon-projet/src/php/index.php?url=addslot"
+          "http://localhost/mon_projet_vue.js/src/php/index.php?url=addslot"
           ,data)
      .then((response) =>{
         response.data;
@@ -91,7 +91,7 @@ export default {
      created() {
             axios
         .post(
-          "http://localhost/mon-projet/src/php/index.php?url=display"
+          "http://localhost/mon_projet_vue.js/src/php/index.php?url=display"
          
         )
         .then((res) => {

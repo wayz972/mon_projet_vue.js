@@ -7,17 +7,23 @@
 <!------------------------------------------ carte ----------------------->
  <section class="container-card">
   <div class="card  cd" >
-       <div class="card-image card-1" ></div>
+       <div class="card-image card-1" >
+         <img src= "../assets/pexels-william-choquette-1954524.jpg" class="img-fluid" alt="...">
+       </div>
        <h2>{{fitness}}</h2>
        <p>{{message_card}}</p>
   </div>
   <div class="card cd">
-       <div class="card-image card-2"></div>
+       <div class="card-image card-2">
+         <img src= "../assets/pexels-scott-webb-136410.jpg" class="img-fluid" alt="...">
+       </div>
        <h2>{{bien_etre}}</h2>
        <p>{{message_card}}</p>
   </div>
   <div class="card cd">
-       <div class="card-image card-3"></div>
+       <div class="card-image card-3">
+           <img src= "../assets/pexels-nathan-cowley-1153369.jpg" class="img-fluid" alt="...">
+       </div>
        <h2>{{box_crossfit}} </h2>
        <p>{{message_card}}</p>
   </div>
@@ -148,19 +154,7 @@ margin-bottom: 0;
     background-size: cover;
     border-radius:2px;
 }
-.card-1{
 
-    background-image:url("../assets/pexels-william-choquette-1954524.jpg"); 
-}
-.card-2{
-
-     background-image:url("../assets/pexels-scott-webb-136410.jpg")
-}
-.card-3{
-
-     background-image: url("../assets/pexels-nathan-cowley-1153369.jpg")
-
-}
 .card p{
     
     text-align: justify;

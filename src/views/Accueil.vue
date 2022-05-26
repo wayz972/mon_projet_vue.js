@@ -38,7 +38,9 @@ export default {
 </script>
 <style scoped >
 
-
+div{
+    z-index: 0;
+}
 
 
 

@@ -181,7 +181,7 @@ export default {
       data.append("id_postal", this.id_zip_code);
 
       axios
-        .post("http://localhost/mon-projet/src/php/?url=createsalle", data)
+        .post("http://localhost/mon_projet_vue.js/src/php/?url=createsalle", data)
         .then((res) => {
 
           console.log(res);
@@ -198,15 +198,15 @@ export default {
             this.creationsalle = true;
             this.class = true;
             this.message = "votre salle a bien été créé";
-            // setTimeout(() => {
-            //   //me permet de mettre les variable a null
-            //   this.creationsalle = false;
-            //   this.newSalle.nameSalle = "";
-            //   this.newSalle.adresseSalle = "";
-            //   this.newSalle.numeroSalle = "";
-            //   this.newSalle.imagesalle = "";
-            //   this.$router.push("/profilpro");
-            // }, 3000);
+            setTimeout(() => {
+              //me permet de mettre les variable a null
+              this.creationsalle = false;
+              this.newSalle.nameSalle = "";
+              this.newSalle.adresseSalle = "";
+              this.newSalle.numeroSalle = "";
+              this.newSalle.imagesalle = "";
+              this.$router.push("/profilpro");
+            }, 3000);
           }
         });
     },
@@ -214,7 +214,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 #scroll {
   width: 20em;
   height: 5em;
