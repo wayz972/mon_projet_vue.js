@@ -1,7 +1,7 @@
 <?php
 
 
-class Salle  extends Model
+class Salle  extends Database
 {
 
     private $id_salle;

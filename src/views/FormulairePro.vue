@@ -25,7 +25,7 @@
       <div class="row g-4 mt-5 col-sm">
         <div class="font-monospace">
           <p class="fs-5 fst-italic">
-            vous etres un utilisateur <a href="#/formulaire">retour ici</a>
+            vous etre un utilisateur <a href="#/formulaire">retour ici</a>
           </p>
         </div>
       </div>

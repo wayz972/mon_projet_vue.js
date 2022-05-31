@@ -1,7 +1,7 @@
 <?php
 
 
-class Dater extends Model{
+class Dater extends Database{
 
 
     private $id_event;

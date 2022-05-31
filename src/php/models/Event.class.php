@@ -2,7 +2,7 @@
 
 
 
-class Event extends Model
+class Event extends Database
 {
 
 

@@ -25,7 +25,7 @@
     >
       <div class="font-monospace">
         <p class="fs-5 fst-italic">
-          vous etres un professionnel <br />
+          vous etre un professionnel <br />
           <a href="#/formulairepro">cliquer ici</a>
         </p>
       </div>

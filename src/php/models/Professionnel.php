@@ -1,6 +1,6 @@
 <?php
 
-class Professionnel extends Model
+class Professionnel extends Database
 {
 
     private $id_professionnel;

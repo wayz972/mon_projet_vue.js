@@ -181,7 +181,7 @@ class ControlClient
 
           $tabExtension = explode('.', $name);  // permets de découper une chaîne de caractère en plusieurs morceaux// apres lepoint
           $extension = strtolower(end($tabExtension));  //Le fonction strtolower permets de mettre en minuscule tout une chaîne de caractère
-          $tailleMax = 40000;
+          $tailleMax = 4000000;
 
           $extensionAutorisees = ['jpg', 'jpeg', 'png']; //format accepter
           if (in_array($extension, $extensionAutorisees) && $size <= $tailleMax && $error == 0) {
@@ -192,8 +192,8 @@ class ControlClient
 
 
             //déplacer le fichier importé
-            $fichier = move_uploaded_file($image, "../image/$fileName");
-            $updateuser = new Client();;
+             move_uploaded_file($image, "../image/$fileName");
+            $updateuser = new Client();
             $updateuser->setImgclient(htmlspecialchars($fileName));
             $updateuser->setName_client(htmlspecialchars($_POST["name"]));
             $updateuser->setFirst_name_client(htmlspecialchars($_POST["fname"]));

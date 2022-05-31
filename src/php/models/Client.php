@@ -1,7 +1,7 @@
 <?php
 include("models/Database.php");
 
-class Client extends Model
+class Client extends Database
 {
 
   private $id_client;

@@ -1,6 +1,6 @@
 <?php
 
-class Attacher extends Model{
+class Attacher extends Database{
 
    private $id_salle;
    private $id_city;

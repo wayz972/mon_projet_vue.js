@@ -1,7 +1,7 @@
 <?php 
 
 
-class Creneaux extends Model{
+class Creneaux extends Database{
 
 private $id_creneaux;
 

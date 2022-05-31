@@ -1,5 +1,5 @@
 <?php
-class Model
+class Database
 {
   private $host = 'localhost';
   private $data = 'website';

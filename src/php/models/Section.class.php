@@ -1,6 +1,6 @@
 <?php
 
-class Section extends Model{
+class Section extends Database{
 
 
     private $id_event;

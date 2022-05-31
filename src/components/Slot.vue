@@ -29,7 +29,7 @@ export default {
     findIdSlot(item){
       //trouver id du slot
       var change = this.tabs.find((cost) => cost.id_creneaux === item.id_creneaux);
-      console.log(change.id_creneaux,this.$store.state.User.id,change.creneaux);
+     
 
       // supprimer le slot avec id 
       let data = new FormData();
@@ -49,7 +49,7 @@ export default {
   },
   created() {
     let data = new FormData();
-    data.append("id", sessionStorage.getItem("id"));
+    data.append("id", this.$store.state.User.id);
     axios
       .post("http://localhost/mon-projet/src/php/index.php?url=slot", data)
       .then((response) => {

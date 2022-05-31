@@ -45,7 +45,7 @@
               <input
                 type="file"
                 class="form-control"
-                autocomplete="newimg"
+              
                 @change="previewFiles"
                 multiple
               />
@@ -275,7 +275,7 @@ export default {
  */
     previewFiles(event) {
       this.newimg = event.target.files[0];
-      console.log(this.newimg);
+      
     },
 
     changetoogle() {
