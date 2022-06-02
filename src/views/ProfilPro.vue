@@ -211,6 +211,7 @@
  
 </template>
 
+
 <script>
 import { Toast } from 'bootstrap/dist/js/bootstrap.esm.min.js'
 import Slot from "../components/Slot.vue";
