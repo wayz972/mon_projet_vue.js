@@ -45,7 +45,6 @@
               <input
                 type="file"
                 class="form-control"
-              
                 @change="previewFiles"
                 multiple
               />

@@ -61,12 +61,14 @@
 <fa :icon="['fab','google']"/> -->
   <!-- {{this.$store.state.User}} -->
   <!-- {{this.$store.state.User}} -->
+  
 </template>
 <script>
 
 import monFooter from "../components/Footer.vue";
 export default {
   name:'meConnecter',
+ 
   components: { monFooter },
   data() {
     return {
@@ -92,32 +94,7 @@ export default {
       data.append("email", this.emailuser);
       data.append("password", this.passworduser);
          this.$store.dispatch("checked",data);
-      // axios
-      //   .post("http://localhost/mon-projet/src/php/index.php?url=login", data)
-      //   .then((response) => {
-      //     response.data, console.log(response.data);
-
-      //     if (response.data.error !== undefined || response.data == undefined) {
-      //       this.show = true;
-      //       console.log("no-pass");
-      //       this.error = response.data.error;
-      //       setTimeout(() => {
-      //         this.show = false;
-      //       }, 3000);
-      //     } else {
-      //       sessionStorage.setItem("email", response.data.email);
-      //       sessionStorage.setItem("name", response.data.name_user);
-      //       sessionStorage.setItem("fname", response.data.first_name_user);
-      //       sessionStorage.setItem("phone", response.data.phone_user);
-      //       sessionStorage.setItem("id", response.data.id_user);
-      //       sessionStorage.setItem("status", response.data.verify);
-      //       sessionStorage.setItem("img", response.data.img);
-      //       sessionStorage.setItem("nav", response.data.nav);
-      //       this.change();
-      //       // this.$router.push("/profilpro");
-            
-      //     }
-      //   });
+    
     },
   },
 };
