@@ -1,6 +1,7 @@
 <template>
 
 
+
   <div>
       <home
       v-for="(item,index) in page" :key="index"
@@ -20,6 +21,8 @@ export default {
     components:{home},
     data(){
         return{
+
+            
             page:[
                 {
                     id:"",
@@ -32,6 +35,7 @@ export default {
 
         }
     },
+ 
   
 }
  

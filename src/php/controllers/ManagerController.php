@@ -74,7 +74,8 @@ class ManagerController
 
 
   public function delete()
-  {
+{
+  try {
     if (!empty($_POST["id"]) && !empty($_POST["id_salle"])) {
 
       $event = new Event();
@@ -89,8 +90,13 @@ class ManagerController
 
       }
 
-      
     }
+    
+  } catch (Exception $e) {
+    echo $e->getMessage();
+  }
+  
+  
   }
 
 

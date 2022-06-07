@@ -25,8 +25,8 @@
     >
       <div class="font-monospace">
         <p class="fs-5 fst-italic">
-          vous etre un professionnel <br />
-          <a href="#/formulairepro">cliquer ici</a>
+          vous etre un professionnel cliquer 
+          <a href="#/formulairepro"> ici</a>
         </p>
       </div>
       <hr />
@@ -253,6 +253,11 @@ export default {
   display: flex;
   justify-content: space-evenly;
 }
+
+a:link 
+{ 
+ text-decoration:none; 
+} 
 
 
 </style>

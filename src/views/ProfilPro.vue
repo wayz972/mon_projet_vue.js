@@ -72,7 +72,7 @@
                 class="form-control"
                 type="text"
                 id="account-fn"
-                required=""
+                
                 v-model="this.$store.state.User.name"
               />
             </div>
@@ -84,7 +84,7 @@
                 class="form-control"
                 type="text"
                 id="account-ln"
-                required=""
+                
                 v-model="this.$store.state.User.fname"
               />
             </div>
@@ -97,7 +97,7 @@
                 class="form-control"
                 type="email"
                 id="account-email"
-                disabled=""
+                
                 v-model="this.$store.state.User.email"
               />
             </div>
@@ -109,7 +109,7 @@
                 class="form-control"
                 type="text"
                 id="account-phone"
-                required=""
+                
                 v-model="this.$store.state.User.phone"
               />
             </div>

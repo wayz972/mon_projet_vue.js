@@ -19,6 +19,7 @@
        <input type="datetime-local"  v-model="time" />
      
     <button type="button" class="btn btn-outline-success  " @click="add(item)">valider</button>
+    {{reservation}}
      </div>
   </div>
 </div>
@@ -26,6 +27,7 @@
 </div>
 
 </div>
+
 <div v-else class="card">
   <div class="card-body">
     pas de salle enregistrer ....
@@ -48,14 +50,18 @@ export default {
                infoSalle:[],
                time:'',
 
-             nameSalle:sessionStorage.getItem(""),
-             emailSalle:sessionStorage.getItem(""),
-             numeroSalle:sessionStorage.getItem(""),
-             adressSalle:sessionStorage.getItem(""),
-             imgSalle:sessionStorage.getItem(""),
+          
         }
+     
         
     },
+       computed:{
+         reservation(){
+           return this.$store.state.reservation;
+         }
+
+
+       },
     methods: {
 
       change(){
@@ -67,25 +73,21 @@ export default {
                 var  change=this.infoSalle.find(cost=>cost.id_salle === item.id_salle )
             console.log(change.id_salle)
             console.log(this.time)
-            
-
-
+            item.quantity=1
+      
+     
 
    let data = new FormData();
     data.append("id",change.id_salle);
     data.append("slot",this.time);
     data.append("id_user", this.$store.state.User.id)
-        axios.post(
-          "http://localhost/mon_projet_vue.js/src/php/index.php?url=addslot"
-          ,data)
-     .then((response) =>{
-        response.data;
-       console.log(response.data);
-      
-      })
-
+    
+      this.$store.dispatch("add",data);
+    
+          
 
             },
+          
       
     },
      created() {

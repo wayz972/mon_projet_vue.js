@@ -13,6 +13,7 @@ export default createStore({
         
       ischange:true,
         tabs:[],
+        reservation:[],
 
 
         collapsed:false,
@@ -66,7 +67,6 @@ User:{
             `${state.collapsed.value ? state.SIDEBAR_WIDTH_COLLAPSED : state.SIDEBAR_WIDTH}px`
         },
         checked(state,response){
-            console.log(response.data.email);
             if (response.data.error !== undefined || response.data == undefined) {
                       state.verifaction.show = true;
                       
@@ -84,9 +84,6 @@ User:{
                       state.User.img=response.data.img;
                       
                       window.location.href = "http://localhost:8080/#/profilpro"
-                      
-                   
-                      
                     }
             
         },
@@ -125,6 +122,11 @@ User:{
         }
 
 
+    },
+    add(state,response){
+       
+             response.data;
+              console.log(response.data);
     }
 },
     
@@ -176,7 +178,21 @@ actions: {
                 commit('enregister',response)
             })
 
+         },
+
+         add ({commit},data){
+         
+            axios.post(
+                "http://localhost/mon_projet_vue.js/src/php/index.php?url=addslot"
+                ,data)
+           .then((response) =>{
+            console.log(response.data);
+            commit ("add",response)
+            
+            })
+
          }
+
 
 
 

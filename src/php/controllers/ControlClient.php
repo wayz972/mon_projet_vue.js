@@ -11,7 +11,7 @@ class ControlClient
     $message = [
       ["error" => "Vous devez renseigner tous les champs"],
       ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"],
-      ["success" => "compte crée"],
+      ["success" => "compte créer"],
       ["errorImage" => "mauvais extension ou taille trop importante ou erreur "],
       ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"]
 

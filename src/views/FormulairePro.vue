@@ -25,7 +25,7 @@
       <div class="row g-4 mt-5 col-sm">
         <div class="font-monospace">
           <p class="fs-5 fst-italic">
-            vous etre un utilisateur <a href="#/formulaire">retour ici</a>
+            vous etre un utilisateur cliquer  <a href="#/formulaire"> ici</a>
           </p>
         </div>
       </div>
@@ -111,15 +111,15 @@
       </div>
     </form>
   </div>
-<mon-footer/>
+<Footer/>
 </template>
 
 <script>
-import  monFooter from "../components/Footer.vue";
+import  Footer from "../components/Footer.vue";
 import axios from "axios";
 export default {
   name:'monFormulairePro',
-  component: { monFooter },
+  components: { Footer },
   data() {
     return {
       imageuser: "",
@@ -243,4 +243,11 @@ export default {
 .fadepro-leave-active {
   transition: all 2s ease;
 }
+
+a:link 
+{ 
+ text-decoration:none; 
+} 
+
+
 </style>

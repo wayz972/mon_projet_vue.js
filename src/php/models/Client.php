@@ -11,7 +11,7 @@ class Client extends Database
   private $email;
   private $telephone;
   private $image;
-  private $conn;
+  
 
   public function __construct()
   {
