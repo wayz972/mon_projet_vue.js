@@ -61,7 +61,7 @@
 <fa :icon="['fab','google']"/> -->
   <!-- {{this.$store.state.User}} -->
   <!-- {{this.$store.state.User}} -->
-  
+
 </template>
 <script>
 
@@ -90,6 +90,7 @@ export default {
       this.$store.dispatch("change");
     },
     checked() {
+      
       let data = new FormData();
       data.append("email", this.emailuser);
       data.append("password", this.passworduser);

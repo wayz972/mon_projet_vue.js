@@ -11,7 +11,7 @@ class Client extends Database
   private $email;
   private $telephone;
   private $image;
-  
+
 
   public function __construct()
   {
@@ -85,32 +85,39 @@ class Client extends Database
   // connecter lutilisateur client 
   public function connectUser()
   {
-    $sql = "SELECT *FROM client WHERE email_client = :email_client";
-    $stmt = $this->connect()->prepare($sql);
-    $stmt->bindParam(':email_client', $this->email);
-    $stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
-      $recup = $stmt->fetch();
-      if (password_verify($this->password, $recup["password_client"]) && $this->email == $recup["email_client"]) {
-        $tabs = array(
-          "id_user" => $recup["id_client"],
-          "email" => $recup["email_client"],
-          "name_user" => $recup["nom_client"],
-          "first_name_user" => $recup["prenom_client"],
-          "phone_user" => $recup["tel_client"],
-          "img" => $recup["img_client"],
-          'verify' => false,
-          'nav' => false,
-        );
+    try {
+      $sql = "SELECT *FROM client WHERE email_client = :email_client";
+      $stmt = $this->connect()->prepare($sql);
+      $stmt->bindParam(':email_client', $this->email);
+      $stmt->execute();
 
-        return $tabs;
+      if ($stmt->rowCount() > 0) {
+        $recup = $stmt->fetch();
+        if (password_verify($this->password, $recup["password_client"]) && $this->email == $recup["email_client"]) {
+          $tabs = array(
+            "id_user" => $recup["id_client"],
+            "email" => $recup["email_client"],
+            "name_user" => $recup["nom_client"],
+            "first_name_user" => $recup["prenom_client"],
+            "phone_user" => $recup["tel_client"],
+            "img" => $recup["img_client"],
+            'verify' => false,
+            'nav' => false,
+          );
+
+          return $tabs;
+        }
       }
+    } catch (Exception $e) {
+      die('Erreur : ' . $e->getMessage());
     }
   }
+
   //cree un utilisateur dans la table client
   public function creationUser()
   {
+    
     $sql = "INSERT INTO
                 client
          (nom_client,prenom_client,
@@ -124,44 +131,49 @@ class Client extends Database
     $req->bindParam(':nom_client', $this->name_client);
     $req->bindParam(':prenom_client', $this->first_name_client);
     $req->bindParam(':email_client', $this->email);
-    $req->bindParam(':password_client',$this->password);
-    $req->bindParam(':tel_client',$this->telephone);
-    $req->bindParam(':img_client',$this->image);
-    $req->execute();
+    $req->bindParam(':password_client', $this->password);
+    $req->bindParam(':tel_client', $this->telephone);
+    $req->bindParam(':img_client', $this->image);
+    $req->execute(); 
+    
   }
   //mettre a jour le client 
   public function updateuser()
   {
-    $sql = 'UPDATE  client
-             SET 
-   nom_client=:nom_client, email_client=:email_client,
-  tel_client=:tel_client, prenom_client=:prenom_client,
-  img_client=:img_client
-            WHERE 	
-   id_client=:id_client';
-    $req = $this->connect()->prepare($sql);
-    $req->bindParam(':img_client', $this->image);
-    $req->bindParam(':nom_client', $this->name_client);
-    $req->bindParam(':email_client', $this->email);
-    $req->bindParam(':tel_client',  $this->telephone);
-    $req->bindParam(':prenom_client', $this->first_name_client);
-    $req->bindParam(':id_client',  $this->id_client);
-    $req->execute();
+    try {
+      $sql = 'UPDATE  client
+      SET 
+nom_client=:nom_client, email_client=:email_client,
+tel_client=:tel_client, prenom_client=:prenom_client,
+img_client=:img_client
+     WHERE 	
+id_client=:id_client';
+$req = $this->connect()->prepare($sql);
+$req->bindParam(':img_client', $this->image);
+$req->bindParam(':nom_client', $this->name_client);
+$req->bindParam(':email_client', $this->email);
+$req->bindParam(':tel_client',  $this->telephone);
+$req->bindParam(':prenom_client', $this->first_name_client);
+$req->bindParam(':id_client',  $this->id_client);
+$req->execute();
 
 
-    $sql="SELECT nom_client,
-    prenom_client,adresse_client,
-    tel_client,	img_client,
-    email_client FROM client WHERE id_client =:id_client";
-     $req = $this->connect()->prepare($sql);
-     $req->bindParam(':id_client', $this->id_client);
-     $req->execute();
-     $stmt=$req->fetch();
-     return $stmt;
-
+$sql = "SELECT nom_client,
+prenom_client,adresse_client,
+tel_client,	img_client,
+email_client FROM client WHERE id_client =:id_client";
+$req = $this->connect()->prepare($sql);
+$req->bindParam(':id_client', $this->id_client);
+$req->execute();
+$stmt = $req->fetch();
+return $stmt;
+    } catch (Exception $e) {
+      die('Erreur : ' . $e->getMessage());
+    }
+  
   }
 
-//sans image
+  //sans image
   public function updateuserwithoutPicture()
   {
     $sql = 'UPDATE  client
@@ -172,7 +184,7 @@ class Client extends Database
             WHERE 	
    id_client=:id_client';
     $req = $this->connect()->prepare($sql);
-    
+
     $req->bindParam(':nom_client', $this->name_client);
     $req->bindParam(':email_client', $this->email);
     $req->bindParam(':tel_client',  $this->telephone);
@@ -181,16 +193,15 @@ class Client extends Database
     $req->execute();
 
 
-    $sql="SELECT nom_client,
+    $sql = "SELECT nom_client,
     prenom_client,adresse_client,
     tel_client,	img_client,
     email_client FROM client WHERE id_client =:id_client";
-     $req = $this->connect()->prepare($sql);
-     $req->bindParam(':id_client', $this->id_client);
-     $req->execute();
-     $stmt=$req->fetch();
-     return $stmt;
-
+    $req = $this->connect()->prepare($sql);
+    $req->bindParam(':id_client', $this->id_client);
+    $req->execute();
+    $stmt = $req->fetch();
+    return $stmt;
   }
 
 
@@ -206,12 +217,7 @@ class Client extends Database
     $stmt = $this->connect()->prepare($sql);
     $stmt->bindParam(':email_client', $this->email);
     $stmt->execute();
-    $req=$stmt->fetch();
-    return $req;
+    
+    return $stmt;
   }
-
-
-
-
-
 }

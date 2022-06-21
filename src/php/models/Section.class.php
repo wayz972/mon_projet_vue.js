@@ -48,23 +48,35 @@ class Section extends Database{
   /////   ajouter a la table section  les 2 id  et la date
   public function addSection(){
 
-    $sql="INSERT INTO section (id_event,id_client,date_section)
-    VALUES (:id_event,:id_client,:datetimeslot)";
-$req = $this->connect()->prepare($sql); 
-$req->bindParam(':id_event', $this->id_event);
-$req->bindParam(':id_client', $this->id_client);
-$req->bindParam(':datetimeslot', $this->datetimeslot);
-$req->execute();
-echo ("valide2"); 
+    try {
+      $sql="INSERT INTO section (id_event,id_client,date_section)
+      VALUES (:id_event,:id_client,:datetimeslot)";
+  $req = $this->connect()->prepare($sql); 
+  $req->bindParam(':id_event', $this->id_event);
+  $req->bindParam(':id_client', $this->id_client);
+  $req->bindParam(':datetimeslot', $this->datetimeslot);
+  $req->execute();
+  echo ("valide2");
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+
+ 
   }
 
 
   public function deleteSlot_idUser(){
-    $sql='DELETE FROM `section` WHERE `id_client`=:id_client and `date_section`=:datetimeslot';
-    $req = $this->connect()->prepare($sql);
-    $req->bindParam(':id_client',$this->id_client);
-    $req->bindParam(':datetimeslot',$this->datetimeslot);
-    $req->execute();
+
+    try {
+      $sql='DELETE FROM `section` WHERE `id_client`=:id_client and `date_section`=:datetimeslot';
+      $req = $this->connect()->prepare($sql);
+      $req->bindParam(':id_client',$this->id_client);
+      $req->bindParam(':datetimeslot',$this->datetimeslot);
+      $req->execute();
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+   
   }
 
 

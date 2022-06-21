@@ -157,7 +157,7 @@ export default {
 
       axios
         .post(
-          "http://localhost/mon-projet/src/php/index.php?url=utilisateur",
+          "http://localhost/mon_projet_vue.js/src/php/index.php?url=utilisateur",
           data
         )
         .then((res) => {

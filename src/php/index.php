@@ -2,16 +2,22 @@
 
 
 
-header('Access-Control-Allow-Origin:*');
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header('Access-Control-Allow-Origin:http://localhost:8080');
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Disposition, Content-Type, Content-Length, Accept-Encoding");
 
 include("controllers/ManagerController.php");
-
+//controleur
 $userproController= new ControlProfessionnel;
 $Controlsalle = new Controlsalle;
+
+
 $managerController = new ManagerController;
+
+
 $userController = new ControlClient;
+
+
 $url = "";
 
 if (isset($_GET['url'])) {

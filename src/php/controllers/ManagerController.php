@@ -20,11 +20,9 @@ class ManagerController
   public function login()
   {
 
-
-
     $_SESSION["message"] = [
       "error" => "Votre identifiant est inconnu ou votre mot de passe est faux. Veuillez réessayer en corrigeant votre saisie",
-      "mail" => "pas une adress mail valid"
+     
     ];
 
     if (empty(!$_POST["email"]) && empty(!$_POST["password"])) {
@@ -143,18 +141,22 @@ class ManagerController
 
   public function deleteSlot()
   {
-   
-
-    if (empty(!$_POST["id"]) && empty(!$_POST['id_user'])&& empty(!$_POST["creneaux"])) {
-      $slot = new Creneaux();
-      $slot->setId_creneaux(htmlspecialchars(strip_tags($_POST["id"])));
-      
-       $slot->DeleteSlot();
-       $slot= new Section();
-       $slot->setId_client(htmlspecialchars(strip_tags($_POST['id_user'])));
-       $slot->setDatetimeslot(htmlspecialchars(strip_tags($_POST['creneaux'])));
-       $slot->deleteSlot_idUser();
+    try {
+      if (empty(!$_POST["id"]) && empty(!$_POST['id_user'])&& empty(!$_POST["creneaux"])) {
+        $slot = new Creneaux();
+        $slot->setId_creneaux($_POST["id"]);
+        
+         $slot->DeleteSlot();
+         $slot= new Section();
+         $slot->setId_client($_POST['id_user']);
+         $slot->setDatetimeslot($_POST['creneaux']);
+         $slot->deleteSlot_idUser();
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
     }
+   
+ 
   }
 
 

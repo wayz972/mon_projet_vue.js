@@ -13,7 +13,8 @@ class ControlClient
       ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"],
       ["success" => "compte créer"],
       ["errorImage" => "mauvais extension ou taille trop importante ou erreur "],
-      ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"]
+      ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"],
+      ["test"=>"test-application"],
 
     ];
 
@@ -30,6 +31,7 @@ class ControlClient
             // je crée un usuer sans image
             $newuser = new Client();
             
+            
 
             $newuser->setImgclient("imagedefault.png");
 
@@ -45,15 +47,16 @@ class ControlClient
 
             $count = $newuser->verifyMail();
 
+
             $nbrUsers = $count->rowCount();
             //je verifie son existance en base de donnée
-            if ($nbrUsers > 0) {
+            if ($nbrUsers> 0) {
 
               echo json_encode($message[4]);
             } else {
-
+   
               $newuser->creationUser();
-
+              
               echo json_encode($message[2]);
             }
           } catch (Exception $e) {
@@ -132,7 +135,12 @@ class ControlClient
 
 
 
-
+  public function methodeSecurity($string)
+  {
+     
+      $string = htmlspecialchars(strip_tags($string));
+      return $string;
+  }
 
   public function updateRegisterUser()
   {
@@ -154,11 +162,11 @@ class ControlClient
         try {
           $updateuser = new Client();
 
-          $updateuser->setName_client(htmlspecialchars($_POST["name"]));
-          $updateuser->setFirst_name_client(htmlspecialchars($_POST["fname"]));
-          $updateuser->setTelephone(htmlspecialchars($_POST["phone"]));
-          $updateuser->setEmail(htmlspecialchars($_POST["email"]));
-          $updateuser->setId_client(htmlspecialchars($_POST["id"]));
+          $updateuser->setName_client( $this->methodeSecurity($_POST["name"]));
+          $updateuser->setFirst_name_client($this->methodeSecurity( $_POST["fname"]));
+          $updateuser->setTelephone($this->methodeSecurity($_POST["phone"]));
+          $updateuser->setEmail($this->methodeSecurity($_POST["email"]));
+          $updateuser->setId_client($this->methodeSecurity($_POST["id"]));
           $user = $updateuser->updateuserwithoutPicture();
           echo json_encode($user);
         } catch (Exception $e) {

@@ -6,7 +6,7 @@ export default createStore({
       currentUser:"",
 
       verifaction:{
-        show: "",
+        show: false,
         error: "",
 
   },
@@ -46,7 +46,7 @@ User:{
              
         },
         disconnect(state){
-
+ 
             state.User.id="";
             state.User.name="";
             state.User.fname="";
@@ -67,12 +67,13 @@ User:{
             `${state.collapsed.value ? state.SIDEBAR_WIDTH_COLLAPSED : state.SIDEBAR_WIDTH}px`
         },
         checked(state,response){
-            if (response.data.error !== undefined || response.data == undefined) {
+            if (response.data.error !== undefined) {
                       state.verifaction.show = true;
                       
-                     state.verifaction.error = response.data.error;
+                      state.verifaction.error = response.data.error;
                       setTimeout(() => {
-                        state.verifaction.show = false;
+                          state.verifaction.show = false;
+                        state.verifaction.error ="";
                       }, 3000);
                     } else {
                       state.User.email= response.data.email;
@@ -82,7 +83,8 @@ User:{
                        state.User.id=response.data.id_user;
                       state.User.change= response.data.verify;
                       state.User.img=response.data.img;
-                      
+                      state.verifaction.show = false;
+                      state.verifaction.error = "";
                       window.location.href = "http://localhost:8080/#/profilpro"
                     }
             
