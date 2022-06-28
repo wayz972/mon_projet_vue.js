@@ -7,18 +7,20 @@ class ControlClient
   public function createUser()
   {
 
-    // message valide ou non valide
+  
     $message = [
       ["error" => "Vous devez renseigner tous les champs"],
       ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"],
       ["success" => "compte créer"],
       ["errorImage" => "mauvais extension ou taille trop importante ou erreur "],
       ["errormail" => "Mail déja utilisé,veuillez renouveler votre demande avec d'autre informations"],
-      ["test"=>"test-application"],
+      
+      
 
     ];
 
-    if (isset($_POST["name"], $_POST["fname"], $_POST["email"], $_POST["password"], $_POST["phone"])) {
+    if (isset($_POST["name"], $_POST["fname"], $_POST["email"],
+     $_POST["password"], $_POST["phone"])) {
       if (
         empty(!$_POST["name"]) && empty(!$_POST["fname"]) && empty(!$_POST["email"])
 

@@ -8,8 +8,10 @@
       {{ this.$store.state.verifaction.error }}
     </div>
   </transition>
-  <div id="container-connect" class="  mt-3 " style="height: 25em">
-    <div class="col-12  col-xs-2 col-md-12 col-lg-3 d-flex justify-content-center">
+  <div id="container-connect" class="mt-3" style="height: 25em">
+    <div
+      class="col-12 col-xs-2 col-md-12 col-lg-3 d-flex justify-content-center"
+    >
       <div class="connect">
         <form action="" method="post" v-on:submit.prevent>
           <h2>se connecter</h2>
@@ -52,7 +54,7 @@
       </div>
     </div>
   </div>
-  <mon-footer/>
+
   <!-- <fa id="icon" :icon="['fa','times-circle']"/> -->
   <!-- <fa id="icon" :icon="['fa','check']"/> -->
   <!-- <fa :icon="['fa','coffee']"/>
@@ -61,15 +63,11 @@
 <fa :icon="['fab','google']"/> -->
   <!-- {{this.$store.state.User}} -->
   <!-- {{this.$store.state.User}} -->
-
 </template>
 <script>
-
-import monFooter from "../components/Footer.vue";
 export default {
-  name:'meConnecter',
- 
-  components: { monFooter },
+  name: "meConnecter",
+
   data() {
     return {
       emailuser: "",
@@ -86,16 +84,18 @@ export default {
     },
   },
   methods: {
+
+
     change() {
       this.$store.dispatch("change");
     },
+
+    
     checked() {
-      
       let data = new FormData();
       data.append("email", this.emailuser);
       data.append("password", this.passworduser);
-         this.$store.dispatch("checked",data);
-    
+      this.$store.dispatch("checked", data);
     },
   },
 };
@@ -140,7 +140,7 @@ export default {
   transition: all 2s ease;
 }
 
-.btn-primary{
-  background-color:#015BA0 !important;
+.btn-primary {
+  background-color: #015ba0 !important;
 }
 </style>

@@ -5,7 +5,10 @@ class ControlProfessionnel{
 
 
 
-
+/**
+ * create user_pro
+ * @return void
+ */
     public function createUserpro()
     {
   
@@ -102,7 +105,10 @@ class ControlProfessionnel{
     }
 
 
-    
+    /**
+     * update user_pro
+     * @return array
+     */
 
     public function updateRegisterUserPro()
     {
@@ -201,18 +207,3 @@ class ControlProfessionnel{
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

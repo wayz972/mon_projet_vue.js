@@ -17,13 +17,13 @@
   </transition>
   <div  class="container ">
     <form
-      class="col-6 mx-auto"
+      class="row"
       action=""
       method="post"
       v-on:submit.prevent
       enctype="multipart/form-data"
     >
-      <div class="font-monospace">
+      <div class="  font-monospace">
         <p class="fs-5 fst-italic">
           vous etre un professionnel cliquer 
           <a href="#/formulairepro"> ici</a>
@@ -31,19 +31,19 @@
       </div>
       <hr />
 
-      <div class="input-group mb-3">
+      <div class=" input-group mb-3">
         <span class="input-group-text" id="basic-addon1"
           ><fa :icon="['fa', 'user']"
         /></span>
         <input
           type="text"
-          class="form-control"
+          class="  form-control"
           placeholder="Nom"
           v-model="nameuser"
         />
       </div>
 
-      <div class="input-group mb-3">
+      <div class="col  input-group mb-3">
         <span class="input-group-text" id="basic-addon1"
           ><fa :icon="['fa', 'user']"
         /></span>
@@ -137,13 +137,21 @@ export default {
   },
   watch: {},
   methods: {
+    
     Switch() {
       this.Status = !this.Status;
     },
+    /**
+     * return value image
+     * @param {value} event 
+     */
     previewFiles(event) {
       this.imageuser = event.target.files[0];
-      console.log(this.imageuser);
+      
     },
+    /**
+     * create objet new Formdata
+     */
 
     submit() {
       let data = new FormData();

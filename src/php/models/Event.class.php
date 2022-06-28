@@ -58,7 +58,11 @@ class Event extends Database
 	}
 
 
-// ajouter dans event 
+ 
+/**
+ * create un event 
+ * @return void 
+ */
 
 	public function addEvent()
 	{

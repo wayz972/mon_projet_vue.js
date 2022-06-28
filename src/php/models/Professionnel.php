@@ -83,7 +83,11 @@ class Professionnel extends Database
         $this->img_professionnel = $img_professionnel;
     }
 
-    // CREE UN PRO DANS LA TABLE PROFESSIONNEL 
+
+    /**
+     * create user_pro
+     * @return void
+     *  */
     public function creationPro()
     {
         $sql = 'INSERT INTO  
@@ -101,7 +105,7 @@ class Professionnel extends Database
     :telephone_professionnel,:img_professionnel)';
 
         $req = $this->connect()->prepare($sql);
-        $req->bindParam(':nom_professionnel',$this->nom_professionnel);
+        $req->bindParam(':nom_professionnel', $this->nom_professionnel);
         $req->bindParam(':prenom_professionnel', $this->prenom_professionnel);
         $req->bindParam(':email_professionnel', $this->email_professionnel);
         $req->bindParam(':password_professionnel', $this->password_professionnel);
@@ -110,7 +114,12 @@ class Professionnel extends Database
         $req->execute();
     }
 
-    //mettre a jour le professionnel
+
+    /**
+     * update user_pro
+     * @return arrray
+     * 
+     */
     public function updatePro()
     {
         $sql = "UPDATE  
@@ -125,14 +134,14 @@ class Professionnel extends Database
        id_professionnel=:id_professionnel";
 
         $req = $this->connect()->prepare($sql);
-        $req->bindParam(':img_professionnel',$this->img_professionnel);
+        $req->bindParam(':img_professionnel', $this->img_professionnel);
         $req->bindParam(':nom_professionnel', $this->nom_professionnel);
         $req->bindParam(':email_professionnel', $this->email_professionnel);
         $req->bindParam(':telephone_professionnel', $this->telephone_professionnel);
         $req->bindParam(':prenom_professionnel', $this->prenom_professionnel);
         $req->bindParam(':id_professionnel', $this->id_professionnel);
         $req->execute();
-        $sql="SELECT nom_professionnel,
+        $sql = "SELECT nom_professionnel,
                      email_professionnel,
                      telephone_professionnel,
                      prenom_professionnel,
@@ -141,13 +150,15 @@ class Professionnel extends Database
         $req = $this->connect()->prepare($sql);
         $req->bindParam(':id_professionnel', $this->id_professionnel);
         $req->execute();
-        $stmt=$req->fetch();
+        $stmt = $req->fetch();
         return $stmt;
-        
     }
 
-   //un utilsateur sans image
-   
+    /**
+     * connect user_pro without picture
+     *@return void
+     */
+
     public function updateProwithoutPicture()
     {
         $sql = "UPDATE  
@@ -162,14 +173,14 @@ class Professionnel extends Database
        id_professionnel=:id_professionnel";
 
         $req = $this->connect()->prepare($sql);
-        
+
         $req->bindParam(':nom_professionnel', $this->nom_professionnel);
         $req->bindParam(':email_professionnel', $this->email_professionnel);
         $req->bindParam(':telephone_professionnel', $this->telephone_professionnel);
         $req->bindParam(':prenom_professionnel', $this->prenom_professionnel);
         $req->bindParam(':id_professionnel', $this->id_professionnel);
         $req->execute();
-        $sql="SELECT nom_professionnel,
+        $sql = "SELECT nom_professionnel,
                      email_professionnel,
                      telephone_professionnel,
                      prenom_professionnel,
@@ -178,25 +189,32 @@ class Professionnel extends Database
         $req = $this->connect()->prepare($sql);
         $req->bindParam(':id_professionnel', $this->id_professionnel);
         $req->execute();
-        $stmt=$req->fetch();
+        $stmt = $req->fetch();
         return $stmt;
-        
     }
 
-  //methode pour verifier si email existe
-  public function verifyMailPro()
-  {
 
-    $sql = 'SELECT * FROM professionnel WHERE  email_professionnel = :email_professionnel';
-    $stmt = $this->connect()->prepare($sql);
-    $stmt->bindParam(':email_professionnel', $this->email_professionnel);
-    $stmt->execute();
-    return $stmt;
-  }
+    /**
+     * verify exists email
+     * @return array
+     */
+    public function verifyMailPro()
+    {
+
+        $sql = 'SELECT * FROM professionnel WHERE  email_professionnel = :email_professionnel';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(':email_professionnel', $this->email_professionnel);
+        $stmt->execute();
+        
+        return $stmt;
+    }
 
 
 
-    // connecter l'utilisateur professionnel 
+    /**
+     * connect user_ pro 
+     * @return array
+     */
     public function connectPro()
     {
 
@@ -261,10 +279,3 @@ class Professionnel extends Database
         }
     }
 }
-
-
-
-
-
-//  nombre devent dans section qui permet de compter le nombre de creneau horaire 
-//  SELECT COUNT(`id_event`) FROM section where `id_event`=17;

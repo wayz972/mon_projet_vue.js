@@ -8,21 +8,14 @@ header("Access-Control-Allow-Headers: Content-Disposition, Content-Type, Content
 
 include("controllers/ManagerController.php");
 //controleur
-$userproController= new ControlProfessionnel;
+$userproController = new ControlProfessionnel;
 $Controlsalle = new Controlsalle;
-
-
 $managerController = new ManagerController;
-
-
 $userController = new ControlClient;
-
-
 $url = "";
 
 if (isset($_GET['url'])) {
   $url = $_GET['url'];
-
 }
 switch ($url) {
   case 'utilisateur':
@@ -36,7 +29,7 @@ switch ($url) {
     $managerController->login();
     break;
   case 'createsalle':
-    
+
     $Controlsalle->registerSalle();
     break;
   case 'updateuser':
@@ -47,7 +40,7 @@ switch ($url) {
     $userproController->updateRegisterUserPro();
     break;
   case 'display':
-    //  $userController-> afficherSalle();
+    
     $Controlsalle->afficherSalle();
     break;
   case 'displaysalleUser':
@@ -65,11 +58,11 @@ switch ($url) {
   case 'slot':
     $managerController->displaySlot();
     break;
-    case 'slotDelete':
-      $managerController->deleteSlot();
-      break;
-    case 'zip_code':
-      $Controlsalle->zip_code();
+  case 'slotDelete':
+    $managerController->deleteSlot();
+    break;
+  case 'zip_code':
+    $Controlsalle->zip_code();
 
-      break;
+    break;
 }

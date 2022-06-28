@@ -92,12 +92,15 @@ class Salle  extends Database
 
 
 
-   //afficher toutes les salle 
+   /**
+    * display salle
+    *@return  array
+    */
 
     public function afficherAll()
     {
 
-        $sql = "SELECT * FROM salle ";
+        $sql = "SELECT nom_salle,email_salle,numero_tel_salle,img_salle,adresse_salle FROM salle ";
         $req = $this->connect()->prepare($sql);
         $req->execute();
         $stmt = $req->fetchAll();
@@ -105,8 +108,10 @@ class Salle  extends Database
     }
 
 
-
-  //  creation de la salle 
+/**
+ * create salle
+ * @return void
+ */
     public function createsalle()
     {
 
@@ -132,7 +137,7 @@ class Salle  extends Database
 
     
 
-//    (a verifier si jutilise cette fonction) afficher la salle 
+//    (a verifier si jutilise cette fonction ou pas : => a supprimer) afficher la salle 
     public function afficherSalle()
     {
      
@@ -141,6 +146,7 @@ class Salle  extends Database
         INNER JOIN salle
         ON utilisateur_pro.id_user_pro = salle.id_user_pro  WHERE salle.id_user_pro= ' . $_POST["iduser"] . '');
          $req = $this->connect()->prepare($sql);
+         $req->bindParam(':nom_salle', $this->nom_salle);
         $req->execute();
         if ($req->rowcount() > 0) {
             while ($donnee = $req->fetch()) {
@@ -157,12 +163,16 @@ class Salle  extends Database
         }
     }
 
-//  input de recherche code postal 
+
+/**
+ *  search by code_postal
+ * @return objet
+ *  */ 
    public function codePostal(){
 
-    $sql='SELECT zip_code,name,id_city FROM `city` WHERE `zip_code` LIKE "%'.$this->zip_code.'%" ';
+    $sql='SELECT zip_code,name,id_city FROM `city` WHERE `zip_code` LIKE `:code` ';
     $req = $this->connect()->prepare($sql);
-    //  $req->bindParam(":code",'%'.$this->zip_code.'%');
+      $req->bindParam(":code",'%'.$this->zip_code.'%');
     $req->execute();
     $stmt = $req->fetchAll(PDO::FETCH_ASSOC);
         return $stmt;

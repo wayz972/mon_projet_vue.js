@@ -6,6 +6,10 @@ include("models/salle.php");
 class Controlsalle
 {
 
+  /**
+   * create salle 
+   * @return void
+   */
   public function registerSalle()
   {
     $messageError = array(
@@ -76,7 +80,10 @@ class Controlsalle
     }
   }
 
-
+/**
+ * display salle 
+ * @return array 
+ */
   public function afficherSalle()
   {
     try {

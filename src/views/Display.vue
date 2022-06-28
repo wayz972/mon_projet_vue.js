@@ -19,7 +19,7 @@
        <input type="datetime-local"  v-model="time" />
      
     <button type="button" class="btn btn-outline-success  " @click="add(item)">valider</button>
-    {{reservation}}
+    
      </div>
   </div>
 </div>
@@ -71,9 +71,8 @@ export default {
        add(item){
                 console.log(this.time);
                 var  change=this.infoSalle.find(cost=>cost.id_salle === item.id_salle )
-            console.log(change.id_salle)
-            console.log(this.time)
-            item.quantity=1
+            
+            
       
      
 

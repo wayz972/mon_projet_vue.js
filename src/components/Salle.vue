@@ -113,7 +113,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../components/Footer.vue";
 export default {
-  name:"maSalle",
+  name: "maSalle",
   components: { Footer },
   data() {
     return {
@@ -154,15 +154,12 @@ export default {
       this.arrayPostale.filter(function (item) {
         item.zip_code !== item;
       });
-      //il prend la value au click 
+      //il prend la value au click
       this.zip_code = `${item.zip_code} ${item.name}`;
       this.id_zip_code = `${item.id_city}`;
       console.log(this.id_zip_code);
-      console.log( this.zip_code)
-
-     
+      console.log(this.zip_code);
     },
-
 
     //recuperer la value de l'image
     previewFiles(event) {
@@ -181,9 +178,11 @@ export default {
       data.append("id_postal", this.id_zip_code);
 
       axios
-        .post("http://localhost/mon_projet_vue.js/src/php/?url=createsalle", data)
+        .post(
+          "http://localhost/mon_projet_vue.js/src/php/?url=createsalle",
+          data
+        )
         .then((res) => {
-
           console.log(res);
           if (res.data.error !== undefined) {
             this.message = res.data.error;

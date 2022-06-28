@@ -13,7 +13,7 @@ export default createStore({
         
       ischange:true,
         tabs:[],
-        reservation:[],
+        
 
 
         collapsed:false,

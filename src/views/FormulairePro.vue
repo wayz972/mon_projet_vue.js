@@ -30,7 +30,7 @@
         </div>
       </div>
       <hr />
-      <div class="input-group mb-3">
+      <div class="col input-group mb-3">
         <span class="input-group-text" id="basic-addon1"
           ><fa :icon="['fa', 'user']"
         /></span>
@@ -42,7 +42,7 @@
         />
       </div>
 
-      <div class="input-group mb-3">
+      <div class="col input-group mb-3">
         <span class="input-group-text" id="basic-addon1"
           ><fa :icon="['fa', 'user']"
         /></span>

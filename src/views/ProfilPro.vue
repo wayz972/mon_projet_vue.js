@@ -1,39 +1,44 @@
 <template>
-
-
-
-
-
-
-
-<div class="d-flex justify-content-center ">
-
-<div id="myToast" class="toast align-items-center text-white bg-primary border-0 " role="alert" aria-live="assertive" aria-atomic="true " data-bs-autohide="false">
-  <div class="d-flex ">
-    <div class="toast-body d-flex">
-      <p> enregistrer</p>
-      <div >
-<fa id="icon" :icon="['fa','check']"/>
+  <div class="d-flex justify-content-center">
+    <div
+      id="myToast"
+      class="toast align-items-center text-white bg-primary border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true "
+      data-bs-autohide="false"
+    >
+      <div class="d-flex">
+        <div class="toast-body d-flex">
+          <p>enregistrer</p>
+          <div>
+            <fa id="icon" :icon="['fa', 'check']" />
+          </div>
+        </div>
+      </div>
+      <div class="progress" style="height: 8px">
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          :style="{ width: pourcentage + '%' }"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
       </div>
     </div>
   </div>
-  <div class="progress" style="height: 8px;">
-  <div class="progress-bar bg-success" role="progressbar" :style="{'width':pourcentage+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-</div>
 
-</div>
+  <!--   ----------------------------------------------------------   -->
 
-<!--   ----------------------------------------------------------   -->
-
-<!--   ----------------------------------------------------------   -->
+  <!--   ----------------------------------------------------------   -->
   <div class="container mt-5">
     <div class="row">
-      <div class="col-lg-4 pb-5 ">
+      <div class="col-lg-4 pb-5">
         <!-- Account Sidebar-->
         <div class="author-card">
           <div class="author-card-profile mt-3 d-flex justify-content-center">
-            <div class=" col-8  card">
+            <div class="col-8 col-sm-8 col-md-6 col-lg-8 card">
               <img
                 class="rounded"
                 :src="require('../image/' + this.$store.state.User.img)"
@@ -41,7 +46,7 @@
                 srcset=""
               />
               <br />
-              
+
               <input
                 type="file"
                 class="form-control"
@@ -51,13 +56,12 @@
             </div>
             <div class="author-card-details">
               <h5 class="author-card-name text-lg"></h5>
-            
             </div>
           </div>
         </div>
       </div>
       <!-- Profile Settings-->
-      <div class="col d-flex justify-content-center   border rounded-1">
+      <div class="col d-flex justify-content-center border rounded-1">
         <form
           class="row"
           method="post"
@@ -72,7 +76,6 @@
                 class="form-control"
                 type="text"
                 id="account-fn"
-                
                 v-model="this.$store.state.User.name"
               />
             </div>
@@ -84,20 +87,17 @@
                 class="form-control"
                 type="text"
                 id="account-ln"
-                
                 v-model="this.$store.state.User.fname"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              
               <label for="account-email">E-mail </label>
               <input
                 class="form-control"
                 type="email"
                 id="account-email"
-                
                 v-model="this.$store.state.User.email"
               />
             </div>
@@ -109,12 +109,11 @@
                 class="form-control"
                 type="text"
                 id="account-phone"
-                
                 v-model="this.$store.state.User.phone"
               />
             </div>
           </div>
-          
+
           <div class="col-12">
             <hr class="mt-2 mb-3" />
 
@@ -154,7 +153,7 @@
                     <p>phone :{{ item.numero_tel_salle }}</p>
                     <p>Email :{{ item.email_salle }}</p>
                     <p>Adresse : {{ item.adresse_salle }}</p>
-                    <p>ville : {{item.zip_code}} {{item.name}}</p>
+                    <p>ville : {{ item.zip_code }} {{ item.name }}</p>
                     <!-- <a href="#" class="stretched-link">Go </a> -->
                     <button
                       type="submit"
@@ -165,9 +164,8 @@
                     </button>
                   </div>
                   <div>
-                     <p>vos réservations</p>
+                    <p>vos réservations</p>
                   </div>
-                 
                 </div>
               </div>
             </div>
@@ -206,14 +204,12 @@
     </div>
   </div>
 
-
   <Footer />
- 
 </template>
 
 
 <script>
-import { Toast } from 'bootstrap/dist/js/bootstrap.esm.min.js'
+import { Toast } from "bootstrap/dist/js/bootstrap.esm.min.js";
 import Slot from "../components/Slot.vue";
 import axios from "axios";
 import Footer from "../components/Footer.vue";
@@ -223,22 +219,18 @@ export default {
   // $emits: ["changetoogle", "update-profil"],
   data() {
     return {
-  
-    
       newimg: "",
-      pourcentage:0,
+      pourcentage: 0,
       txt: "",
-      value:"",
+      value: "",
     };
   },
-  watch: {
-   
-  },
-  //charger la salle 
+  watch: {},
+  //charger la salle
   created() {
     let data = new FormData();
     data.append("id", this.$store.state.User.id);
-    
+
     axios
       .post(
         "http://localhost/mon-projet/src/php/index.php?url=displaysalleUser",
@@ -251,12 +243,10 @@ export default {
   },
 
   methods: {
-
-    
-         /**
-         *  supprimer la salle du professionnel
-         * @param  {string}array 
-         */
+    /**
+     *  supprimer la salle du professionnel
+     * @param  {string}array
+     */
     deletesalle(item) {
       var change = this.txt.find((cost) => cost.id_salle === item.id_salle);
       console.log(change.id_salle);
@@ -265,17 +255,15 @@ export default {
       let data = new FormData();
       data.append("id_salle", change.id_salle);
       data.append("id", this.$store.state.User.id);
-      this.$store.dispatch("deletesalle",data);
-      
+      this.$store.dispatch("deletesalle", data);
     },
 
-/**elle permet de recuperer le nom de limage
- * 
- * @param {array} event 
- */
+    /**elle permet de recuperer le nom de limage
+     *
+     * @param {array} event
+     */
     previewFiles(event) {
       this.newimg = event.target.files[0];
-      
     },
 
     changetoogle() {
@@ -283,47 +271,43 @@ export default {
       this.$emit("changetoogle");
     },
 
-    
     /**cette fonction met a jour le profil pro
      * @param array
-     */ 
+     */
     addsubmit() {
       let data = new FormData();
-      
+
       data.append("phone", this.$store.state.User.phone);
       data.append("name", this.$store.state.User.name);
       data.append("fname", this.$store.state.User.fname);
       data.append("image", this.newimg);
       data.append("email", this.$store.state.User.email);
       data.append("id", this.$store.state.User.id);
-      data.append("img",this.$store.state.User.img); // je transmet l'ancienne image pour efffacer
-      this.$store.dispatch("addsubmit",data);
- 
+      data.append("img", this.$store.state.User.img); // je transmet l'ancienne image pour efffacer
+      this.$store.dispatch("addsubmit", data);
+
       this.change = true;
       this.check();
-        this.toasts(); // 
+      this.toasts(); //
     },
- 
- //chargement de la barre 
-    check(){
-      this.value=setInterval(() => {
-        if(this.pourcentage==120){
-          
-          clearTimeout(this.value)
-          console.log(this.value)
-             this.$router.go();
+
+    //chargement de la barre
+    check() {
+      this.value = setInterval(() => {
+        if (this.pourcentage == 120) {
+          clearTimeout(this.value);
+          console.log(this.value);
+          this.$router.go();
         }
-          this.pourcentage ++;
-          console.log(this.value)
-        }, 30);
-
+        this.pourcentage++;
+        console.log(this.value);
+      }, 30);
     },
 
-
- //mise a jour du client
- /**
-  * @param
-  */ 
+    //mise a jour du client
+    /**
+     * @param
+     */
     enregister() {
       let data = new FormData();
       data.append("phone", this.$store.state.User.phone);
@@ -332,65 +316,38 @@ export default {
       data.append("image", this.newimg);
       data.append("email", this.$store.state.User.email);
       data.append("id", this.$store.state.User.id);
-      this.$store.dispatch("enregister",data);
-      // axios
-      //   .post(
-      //     "http://localhost/mon-projet/src/php/index.php?url=enregister",
-      //     data
-      //   )
-      //   .then((response) => {
-      //     response.data;
-      //     console.log(response.data);
+      this.$store.dispatch("enregister", data);
 
-      //     if(response.data.errorImage ==undefined){
-
-      //         sessionStorage.setItem("name", response.data.nom_client);
-      //     sessionStorage.setItem("email", response.data.email_client);
-      //     sessionStorage.setItem("fname", response.data.prenom_client);
-      //     sessionStorage.setItem("img", response.data.img_client);
-      //     sessionStorage.setItem("phone",response.data.tel_client);
-      //     }else{
-      //        console.log(response.data.errorImage)
-      //     }
-          
-      //   // 
-           
-      //   });
-
-        this.check();
-        this.toasts();
-     
+      this.check();
+      this.toasts();
     },
-
-
 
     addsalle() {
       this.$router.push("/salle");
     },
 
+    /**
+     *  show salle
+     */
+
     findSalle() {
       this.$router.push("/display");
     },
 
-toasts(){
-  var option ={
-    animation:true,
-    delay: 2000,
-  };
-  var element = document.getElementById("myToast");
-   var myToast =  new Toast(element,option)
-  
-        myToast.show();
-         this.check()
-   
-}
+    toasts() {
+      var option = {
+        animation: true,
+        delay: 2000,
+      };
+      var element = document.getElementById("myToast");
+      var myToast = new Toast(element, option);
 
-
-
+      myToast.show();
+      this.check();
+    },
   },
 };
 </script>
 
 <style scoped>
-
 </style>
